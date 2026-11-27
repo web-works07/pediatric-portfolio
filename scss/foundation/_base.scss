@@ -1,0 +1,60 @@
+@use "setting" as *;
+
+html {
+  // ① 通常時（$inner幅より広いとき）
+  // 基準サイズは 16px
+  font-size: 16px;
+
+  // ② PCリキッドレイアウト（画面幅が $inner 以下になったら）
+  // インナー幅を基準に、画面が狭くなるにつれて文字サイズ(1rem)を小さくする
+  @media screen and (max-width: $inner) {
+    // 以前の vw($inner, 16) と同じ計算
+    font-size: vw-root(strip-unit($inner), 16);
+  }
+
+  // ③ タブレット・スマホの境界（md: 767px以下）
+  // 一旦 16px に戻す（あるいはここからスマホ用のデザインにする）
+  @include mq("md") {
+    font-size: 16px;
+  }
+
+  // ④ SP小画面（375px以下）
+  // iPhone SEなどの極小端末で崩れないように縮小させる場合
+  @media screen and (max-width: 390px) {
+    font-size: vw-root(390, 16);
+  }
+}
+
+img {
+  max-width: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: $base-font-family;
+  color: $text-color;
+  background-color: $back-color;
+  overflow-y: scroll; 
+}
+
+body:has(#menu-btn-check:checked) {
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+//768px以上を表示
+.u-desktop {
+  display: block;
+  @include mq("md") {
+    display: none;
+  }
+}
+
+//モバイルのみ表示
+.u-mobile {
+  display: none;
+  @include mq("md") {
+    display: block;
+  }
+}

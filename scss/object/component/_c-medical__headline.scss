@@ -1,0 +1,106 @@
+@use "../../foundation/setting" as *;
+
+// h2
+.c-medical__headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: rem(60);
+
+  position: relative;
+}
+
+// 共通の擬似要素レイアウト　 //
+.c-medical__headline::before,
+.c-medical__headline::after {
+  content: "";
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+// 左側　　//
+.c-medical__headline::before {
+  left: 12%;
+  top: 70%;
+  transform: translateY(-70%) rotate(-10deg);
+  width: rem(120);
+  height: rem(150);
+
+  @include mq("md") {
+    left: 4%;
+    top: 40%;
+    width: rem(60);
+    height: rem(100);
+  }
+}
+
+// 右側　　//
+.c-medical__headline::after {
+  right: 12%;
+  top: 60%;
+  transform: translateY(-70%);
+  width: rem(160);
+  height: rem(190);
+
+  @include mq("md") {
+    right: 4%;
+    top: 40%;
+    width: rem(100);
+    height: rem(100);
+  }
+}
+
+// ----- 一般小児科　----- //
+// 聴診器
+.c-medical__headline--type01::before {
+  background-image: url(../../../images/stethoscope.png);
+}
+// ペンギン
+.c-medical__headline--type01::after {
+  background-image: url(../../../images/penguin_boy_17908.png);
+}
+
+// ----- 予防接種　----- //
+// 注射器
+.c-medical__headline--type02::before {
+  background-image: url(../../../images/medical_chuushaki.png);
+}
+// ペンギンガール
+.c-medical__headline--type02::after {
+  background-image: url(../../../images/penguin_girl.png);
+}
+
+// ----- 乳幼児健診 ---- //
+// 健診
+.c-medical__headline--type03::before {
+  background-image: url(../../../images/kennshin.svg);
+}
+// ペンギンベイビー
+.c-medical__headline--type03::after {
+  background-image: url(../../../images/baby_penguin.png);
+}
+
+.c-medical__title {
+  margin-bottom: rem(34);
+  font-size: rem(32);
+  font-weight: bold;
+  letter-spacing: 10px;
+
+  @include mq("md") {
+    font-size: rem(24);
+  }
+}
+
+.c-table__note {
+  text-align: center;
+  align-items: center;
+  line-height: 1.6;
+  letter-spacing: 10%;
+  margin: 0;
+
+  @include mq("md") {
+    font-size: rem(14);
+  }
+}

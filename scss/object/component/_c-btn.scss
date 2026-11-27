@@ -1,0 +1,226 @@
+@use "../../foundation/setting" as *;
+
+// --- PC web予約 --- //
+.c-btn__web-reservation {
+  width: rem(180);
+  // height: auto;
+  background-color: $yellow;
+  color: $text-color;
+  letter-spacing: rem(2);
+  font-weight: bold;
+
+  padding: rem(30) rem(30) rem(30) rem(65);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(14, 60, 112, 0.549);
+
+  position: relative;
+  display: inline-block;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    background-color: $pink;
+    // transform: translateY(-2px);
+  }
+}
+.c-btn__web-reservation::before {
+  content: "";
+  position: absolute;
+  background: url(../../../images/WEB-icon.png);
+  background-repeat: no-repeat;
+  // 画像が領域内に収まるように縮小
+  background-size: contain;
+  background-position: center;
+
+  width: rem(30);
+  height: rem(30);
+  margin-left: rem(20);
+
+  top: 50%;
+  left: 1%;
+  transform: translateY(-50%);
+}
+
+// --- sp web予約 --- //
+.c-btn__web-reservation--sp {
+  // width: rem(150);
+  height: rem(50);
+  background-color: $yellow;
+  color: $text-color;
+  letter-spacing: rem(2);
+  font-size: rem(14);
+  font-weight: bold;
+
+  padding: rem(16) rem(30) rem(10) rem(65);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(74, 145, 226, 0.342);
+
+  position: relative;
+  display: inline-block;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    background-color: $pink;
+    // transform: translateY(-2px);
+  }
+}
+.c-btn__web-reservation--sp::before {
+  content: "";
+  position: absolute;
+  background: url(../../../images/WEB-icon.png);
+  background-repeat: no-repeat;
+  // 画像が領域内に収まるように縮小
+  background-size: contain;
+  background-position: center;
+
+  width: rem(20);
+  height: rem(20);
+  margin-left: rem(20);
+
+  top: 50%;
+  left: 1%;
+  transform: translateY(-50%);
+}
+
+// PC 電話予約btn //
+.c-btn__tel {
+  // width: rem(180);
+  background-color: $blue;
+  color: $text-color;
+  letter-spacing: rem(2);
+  font-weight: bold;
+
+  padding: rem(30) rem(30) rem(30) rem(75);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(14, 60, 112, 0.549);
+
+  position: relative;
+  display: inline-block;
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    background-color: $pink;
+    // transform: translateY(-2px);
+  }
+}
+
+.c-btn__tel::before {
+  content: "";
+  position: absolute;
+  background: url(../../../images/Phone\ call.png);
+  background-repeat: no-repeat;
+  // 画像が領域内に収まるように縮小
+  background-size: contain;
+  background-position: center;
+
+  width: rem(30);
+  height: rem(30);
+  // margin-left: rem(20);
+
+  top: 50%;
+  left: 12%;
+  transform: translateY(-50%);
+}
+
+// --- sp web予約 --- //
+.c-btn__tel--sp {
+  // width: rem(180);
+  height: rem(50);
+  background-color: $blue;
+  color: $text-color;
+  letter-spacing: rem(2);
+  font-size: rem(14);
+  font-weight: bold;
+
+  padding: rem(16) rem(30) rem(10) rem(65);
+  border-radius: rem(50);
+  position: relative;
+  display: inline-block;
+
+  &:hover {
+    background-color: $pink;
+  }
+}
+.c-btn__tel--sp::before {
+  content: "";
+  position: absolute;
+  background: url(../../../images/tel.svg);
+  background-repeat: no-repeat;
+  // 画像が領域内に収まるように縮小
+  background-size: contain;
+  background-position: center;
+
+  width: rem(20);
+  height: rem(20);
+  margin-left: rem(20);
+
+  top: 50%;
+  left: 1%;
+  transform: translateY(-50%);
+}
+
+// ---  お知らせ　もっと見るbtn --- //
+.c-btn__more {
+  background-color: $blue;
+  color: #002a1d;
+  letter-spacing: rem(2);
+  padding: rem(20) rem(30);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(14, 60, 112, 0.549);
+  transition: 0.3s;
+
+  @include mq("md") {
+    padding: rem(10) rem(15);
+    text-align: center;
+  }
+}
+
+.c-btn__more:hover {
+  background-color: $yellow;
+}
+
+// --- 診療案内 くわしく見るbtn　---//
+.c-btn__detail {
+  background-color: $blue;
+  padding: rem(20);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(14, 60, 112, 0.549);
+  transition: 0.3s;
+
+  @include mq("md") {
+    // display: none;
+    font-size: rem(12);
+    padding: rem(10);
+  }
+}
+
+.c-btn__detail:hover {
+  background-color: $pink;
+
+  & :hover .arrow {
+    transform: translateX(10px);
+  }
+}
+
+// --- 当院の特長　くわしく見るbtn --- //
+.c-btn__detail-t {
+  background-color: $blue;
+  padding: rem(20);
+  border-radius: rem(50);
+  // box-shadow: 0 rem(4) rem(12) rgba(14, 60, 112, 0.549);
+
+  transition: 0.3s;
+  // ブロック要素として中央揃えの書き方
+  display: block;
+  width: fit-content;
+  margin-inline: auto;
+
+  transition: transform 0.3s ease,background-color 0.3s ease;
+
+  &:hover {
+    background-color: $pink;
+    // transform: translateY(-3px);
+  }
+}

@@ -1,0 +1,196 @@
+@use "../../foundation/setting" as *;
+
+// 当院の特長　//
+.p-features {
+  background-image: url(../../../images02/tp-nami\ \(1\).png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  /* 画像のサイズを横幅いっぱいにフィットさせる場合 */
+  background-size: cover;
+  // background-color: $back-color;
+  padding: rem(300) rem(20) rem(300);
+
+  @include mq("md") {
+    background-image: url(../../../images02/tp-sp_nami\ \(1\).png);
+    padding: rem(40) 0 rem(130);
+  }
+}
+
+// 家の形
+.p-features__house {
+  max-width: rem(1400);
+  margin-inline: auto;
+  background-image: url(../../../images/Rectangle\ 106.png);
+  // 画像を繰り返さない設定　
+  background-repeat: no-repeat;
+  /* 画像の位置を中央下に配置する場合 */
+  background-position: center bottom;
+  /* 画像のサイズを横幅いっぱいにフィットさせる場合 */
+  background-size: cover;
+
+  // 家の形 //
+  // clip-path: polygon(
+  //     50% 0%,
+  //     100% 20%,
+  //     92% 20%,
+  //     92% 100%,
+  //     8% 100%,
+  //     8% 20%,
+  //     0 20%);
+
+  // z-index: -1;
+  // border: rem(4) solid $yellow;
+
+  // 重ね順の基準を作るための設定です
+  position: relative;
+  z-index: 1;
+
+  @include mq("md") {
+    width: 100%;
+    max-width: rem(400);
+    // スマートフォン時も背景として敷くため、noneにはせずそのまま残します
+    background-image: none;
+    // コンテンツ全体を包み込むために、上下の余白を適切に確保します
+    padding-top: rem(100);
+    padding-bottom: rem(40);
+  }
+
+  // 家を背面へ敷くための設定です
+  &::before {
+    display: none;
+
+    @include mq("md") {
+      display: block;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      // 高さを100%にすることで、コンテンツ全体を包み込みます
+      height: 100%;
+      background-image: url(../../../images/sp-house.png);
+      background-repeat: no-repeat;
+      background-position: center top;
+      // 縦横比を維持して横幅いっぱいに広げます
+      background-size: 100% 100%;
+      // コンテンツの後ろに回り込ませるための最重要設定です
+      z-index: -1;
+    }
+  }
+}
+
+.p-features__house-inner {
+  margin-inline: auto;
+  padding-top: rem(160);
+  padding-bottom: rem(40);
+  margin-bottom: 2rem;
+
+  // スマートフォン表示の内側パディングを調整します
+  @include mq("md") {
+    padding-top: rem(30);
+    padding-bottom: rem(0);
+    margin-bottom: 1rem;
+  }
+}
+
+.p-features__contents {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: rem(23);
+  padding-top: rem(80);
+  margin-bottom: rem(60);
+
+  @include mq("md") {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    align-items: center;
+
+    padding-top: rem(20);
+    margin-bottom: rem(30);
+  }
+}
+
+.wrapper {
+  max-width: rem(900);
+  margin-inline: auto;
+}
+
+.p-features__item {
+  background-color: $white;
+  width: rem(425);
+  height: rem(470);
+  border: rem(2) solid $blue;
+  border-radius: rem(30);
+
+  @include mq("md") {
+    // 固定幅を解除し、画面からはみ出さないようにします
+    width: 100%;
+    width: rem(300);
+    height: auto;
+
+    margin-bottom: rem(20);
+  }
+}
+
+.p-features__item:last-child {
+  @include mq("md") {
+    margin-bottom: 0;
+  }
+}
+
+.p-features__item-inner {
+  padding: rem(20) rem(25);
+
+  @include mq("md") {
+    padding: rem(15) rem(20);
+  }
+}
+
+.p-features__img {
+  height: rem(230);
+
+  @include mq("md") {
+    width: 100%;
+    // 画像の縦横比を維持しながら縮小させます
+    height: auto;
+    // 画像下の余白を調整します
+    margin-bottom: rem(15);
+  }
+}
+
+.p-features__title {
+  font-size: rem(20);
+  font-weight: bold;
+  text-align: center;
+  margin-top: rem(30);
+  margin-bottom: rem(20);
+
+  @include mq("md") {
+    font-size: rem(15);
+    // タイトルの余白を調整します
+    margin-top: 0;
+    margin-bottom: rem(10);
+  }
+}
+
+.p-features__note {
+  text-align: center;
+
+  @include mq("md") {
+    font-size: rem(12);
+  }
+}
+
+// // ボタンのスタイルを調整します
+// .c-btn__detail-t {
+//   display: block;
+//   width: fit-content;
+//   margin-inline: auto;
+//   // ボタンの余白を調整します
+//   margin-top: rem(40);
+
+//   @include mq("md") {
+//     margin-top: rem(20);
+//   }
+// }

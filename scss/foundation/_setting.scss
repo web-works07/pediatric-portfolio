@@ -1,0 +1,100 @@
+@use "sass:math";
+@use "sass:map";
+@use "sass:meta";
+
+// ==========================================
+// リキッドレイアウト用 計算関数
+// ==========================================
+
+// 数値から単位を取り除く関数 (100px → 100)
+@function strip-unit($number) {
+  @if meta.type-of($number) == "number" and not math.is-unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+  @return $number;
+}
+
+// 画面幅に対するサイズの割合(vw)を計算する関数
+// 第1引数: 基準となる画面幅 (例: $inner)
+// 第2引数: その時のフォントサイズ (例: 16)
+@function vw-root($window_width, $size) {
+  @return math.div($size, $window_width) * 100vw;
+}
+// ※名前を vw-root に変えました（以前作った vw() 関数と区別するため）
+
+//----------------------
+// inner-size
+//----------------------
+$inner: 1440px;       // コンテンツ幅（1200px）
+$padding-pc: 120px;    // PC余白
+$padding-sp: 10px;    // SP余白
+
+// // ---------------------
+// // wrapper-size
+// // ---------------------
+$wrapper: 1440px;     //コンテンツ幅（900px）
+$wrapper-padding-pc: 80px;   //PC余白
+$wrapper-padding-sp: 20px;    //SP余白
+
+// // ---------------------
+// // contents-inner-size
+// // ---------------------
+// $contents-inner: 1440px; //コンテンツ幅（900px）
+// $padding-pc: 270px;   //PC余白
+// $padding-sp: 20px;    //SP余白
+
+
+//----------------------
+// fonts
+//----------------------
+$base-font-family: 'Zen Kaku Gothic Antique', sans-serif;
+$second-font-family: 'Noto Serif JP', serif;
+
+$regular: 300;
+$normal: 400;
+$medium: 500;
+$bold: 700;
+
+//----------------------
+// color
+//----------------------
+$back-color: #FBF9F7;
+$text-color: #545255;
+$pink: #FFEAF4;
+$blue: #CFE3E8;
+$yellow: #FCDE8B;
+$light-yellow:#FEF0D2;
+$white: #fff;
+$table-color:#B9B9B9;
+
+//----------------------
+// breakPoint
+//----------------------
+$breakpoints: (
+  xl: 1440,
+  lg: 1023,
+  md: 767,
+  sm: 393,
+);
+
+$mediaquerys: (
+  sm: "screen and (max-width: #{map.get($breakpoints, 'sm')}px)",
+  md: "screen and (max-width: #{map.get($breakpoints, 'md')}px)",
+  lg: "screen and (max-width: #{map.get($breakpoints, 'lg')}px)",
+  xl: "screen and (min-width: #{map.get($breakpoints, 'xl')}px)",
+);
+
+@mixin mq($mediaquery: md) {
+  @media #{map.get($mediaquerys, $mediaquery)} {
+    @content;
+  }
+}
+
+@function rem($pixels) {
+  // math.div(割られる数, 割る数) のように2つ引数が必要です
+  @if math.is-unitless($pixels) {
+    @return math.div($pixels, 16) * 1rem;
+  } @else {
+    @return math.div($pixels, 16px) * 1rem;
+  }
+}

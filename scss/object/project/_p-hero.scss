@@ -1,0 +1,99 @@
+@use "../../foundation/setting" as *;
+
+// ----- ヒーロー ----- //
+
+.p-hero {
+  // max-width: rem(1440);
+  margin-left: rem(120);
+  height: auto;
+
+  @include mq("md") {
+    margin-inline: rem(10);
+  }
+}
+
+.p-hero__title {
+  font-size: rem(40);
+  font-weight: bold;
+  letter-spacing: rem(10);
+  margin-bottom: rem(36);
+
+  @include mq("md") {
+    font-size: rem(30);
+    margin: 0 0 rem(10);
+  }
+}
+// spの時だけ改行 //
+.sp-br {
+  display: none;
+
+  @include mq("md") {
+    .sp-br {
+      display: inline;
+    }
+  }
+}
+
+.p-hero__text {
+  font-size: rem(20);
+  letter-spacing: rem(5);
+  margin-bottom: rem(78);
+
+  @include mq("md") {
+    font-size: rem(16);
+    margin-bottom: rem(16);
+  }
+}
+
+.p-hero__contents {
+  display: flex;
+  justify-content: space-between;
+  /* centerからstretchに変更して左右の高さを揃えます↓↓ */
+  align-items: stretch;
+
+  // pc
+  flex-direction: row;
+
+  @include mq(md) {
+    flex-direction: column-reverse;
+  }
+}
+
+.p-hero__contents-left {
+  flex: 1;
+  min-width: 0;
+  width: 45%;
+  
+  @include mq("md") {
+    width: 100%;
+  }
+}
+
+.p-hero__contents-right {
+    width: 55%;
+    // ↓↓子要素の絶対配置の基準にする //
+    position: relative;
+
+  @include mq(md) {
+    width: 100%;
+    max-width: none;
+    // スマホでは高さを固定しないようにする↓↓ //
+    height: auto;
+  }
+}
+
+.p-hero-image {
+  display: block;
+  // min-width: rem(600);
+  // margin-left: auto;
+  width: 100%;
+  // 親要素の高さに合わせる↓↓ //
+  height: auto;
+  object-fit: cover;
+
+  @include mq("md") {
+    // スマホでは画像本来の比率に戻す //
+    height: auto;
+    padding-top: rem(60);
+  }  
+}

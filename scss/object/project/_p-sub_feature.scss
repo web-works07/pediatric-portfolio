@@ -1,0 +1,324 @@
+@use "../../foundation/setting" as *;
+
+// ----- 下層　当院の特長 ----- //
+
+// .p-feature {
+//   // overflow: hidden; は、要素からはみ出した子要素を、要素の内側（padding box）で切り取って見えなくするCSSです。スクロールバーは表示されません。
+//   // overflow: hidden;
+// }
+
+.p-feature__area {
+  background: url("../../../images02/feature-blue.png");
+  background-repeat: no-repeat;
+  // background-position: center top;
+  background-size: 100% 100%;
+
+  padding-block: rem(180) rem(300);
+  margin-bottom: rem(160);
+
+  position: relative;
+
+  @include mq("md") {
+    background: url(../../../images06/sp-feature_nami-blue.png);
+    background-repeat: no-repeat;
+    // background-position: center top;
+    background-size: 100% 100%;
+
+    padding-block: rem(100) rem(160);
+    margin-bottom: rem(100);
+  }
+}
+
+// 青色の風船を持ったペンギンのイラスト
+.p-feature__penguin-blue-balloon {
+  position: absolute;
+  top: 2.5%;
+  left: 2%;
+  width: rem(360);
+  z-index: 2;
+
+  img {
+    width: 80%;
+    height: auto;
+    display: block;
+  }
+
+  @include mq("md") {
+    top: 1%;
+    left: 1%;
+
+    img {
+      width: 40%;
+    }
+  }
+}
+
+// 黄色い風船のイラスト
+.p-feature__yellow-balloon {
+  position: absolute;
+  top: 2%;
+  right: -1%;
+  width: rem(300);
+  z-index: 2;
+
+  img {
+    width: 50%;
+    height: auto;
+    display: block;
+  }
+  // 風船ふわふわの動き
+  @keyframes fuwaFuwa {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* アニメーションの適用 */
+  animation: fuwaFuwa 3.5s ease-in-out infinite;
+
+  @include mq("md") {
+    top: 0.5%;
+    right: -30%;
+
+    img {
+      width: 30%;
+    }
+  }
+}
+
+// 下部　黄色い風船を持ったペンギンのイラスト
+.p-feature__penguin-yellow-balloon {
+  position: absolute;
+  bottom: 1.5%;
+  right: -1%;
+  width: rem(300);
+  z-index: 2;
+
+  img {
+    width: 80%;
+    height: auto;
+    display: block;
+  }
+
+  @include mq("md") {
+    bottom: 0.7%;
+    width: rem(150);
+  }
+}
+
+.p-feature__house {
+  background: url("../../../images02/sub-feature-house.png") no-repeat center top;
+  // coverは使わない
+  background-size: 100% 100%;
+
+  width: 100%;
+  margin-inline: auto;
+
+  padding: rem(300) rem(120) rem(180);
+
+  @include mq("md") {
+    background: url(../../../images06/sp-sub_feature-house.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    max-width: rem(393);
+    margin-inline: auto;
+
+    padding: rem(120) rem(40) rem(36);
+  }
+}
+
+.p-feature__flow-list.u-desktop {
+  position: relative;
+  isolation: isolate;
+}
+
+.p-feature__flow-line {
+  position: absolute;
+  top: 0;
+  left: rem(-48);
+  width: calc(100% + #{rem(96)});
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  stroke: $text-color;
+  stroke-width: 2;
+  stroke-linecap: round;
+
+  @media (prefers-reduced-motion: no-preference) {
+    clip-path: inset(0 0 var(--feature-line-hidden, 100%) 0);
+  }
+}
+
+.p-feature__contents {
+  position: relative;
+  z-index: 2; //線よりも手前に表示させるため
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: rem(30);
+  margin-bottom: rem(180);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mq("md") {
+    display: flex;
+    flex-direction: column;
+    gap: rem(18);
+    margin-bottom: rem(100);
+  }
+}
+
+// 偶数番目などの左右交互レイアウト対応
+.p-feature__reverse-contents {
+  display: flex;
+  justify-content: space-between;
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+  align-items: center;
+  gap: rem(30);
+
+  @include mq("md") {
+    flex-direction: column; //スマホ時は横並びに直す場合
+  }
+}
+
+// ----- ナンバリング風船　----- //
+.p-feature__numbering-balloon {
+  --balloon-knot-size: #{rem(20)};
+
+  width: rem(30);
+  height: rem(30);
+  font-size: rem(40);
+  font-weight: bold;
+
+  border: 1px solid $text-color;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: $blue;
+
+  padding: rem(80);
+
+  position: relative;
+  flex-shrink: 0; // 風船が潰れるのを防ぐ
+
+  @include mq("md") {
+    --balloon-knot-size: #{rem(10)};
+
+    font-size: rem(20);
+    padding: rem(28);
+  }
+
+  &--002 {
+    background: $light-yellow;
+  }
+
+  // 風船の結び目
+  &::before {
+    content: "";
+    position: absolute;
+    left: 40%;
+    bottom: calc(-1 * var(--balloon-knot-size));
+    width: var(--balloon-knot-size);
+    height: var(--balloon-knot-size);
+    background: inherit;
+    border: 1px solid $text-color;
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    transform: rotate(-160deg);
+    z-index: 4;
+  }
+}
+
+.p-feature__title {
+  margin-bottom: rem(24);
+  text-align: center;
+  font-size: rem(24);
+  font-weight: 700;
+  line-height: 1.8;
+  color: #555;
+
+  // 日本語の不自然な改行を防ぎつつ、長文や英単語のはみ出しを防ぐ基本セット
+  word-break: auto-phrase;
+  overflow-wrap: break-word;
+
+  @include mq("md") {
+    margin-bottom: 0;
+    font-size: rem(18);
+    // 文章エリアとイラストエリアの幅のバランスを整える
+    flex: 1; // 残りのスペースを上手に埋める
+    text-align: left; // 必要に応じて左寄せなどに調整
+    word-break: normal;
+  }
+}
+
+.p-feature__desc {
+  text-align: center;
+  font-size: rem(20);
+  line-height: 2;
+  color: #666;
+
+  // 日本語の不自然な改行を防ぎつつ、長文や英単語のはみ出しを防ぐ基本セット
+  word-break: auto-phrase;
+  overflow-wrap: break-word;
+
+  @include mq("md") {
+    font-size: rem(14);
+    // 文章エリアとイラストエリアの幅のバランスを整える
+    flex: 1; // 残りのスペースを上手に埋める
+    text-align: left; // 必要に応じて左寄せなどに調整
+    word-break: normal;
+  }
+}
+
+.p-feature__ills {
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @include mq("md") {
+    max-width: 100%;
+  }
+}
+
+
+// ---- SPのみ ---- //
+.p-feature__sp-headline {
+  @include mq("md") {
+    display: flex;
+    justify-content: space-between;
+    gap: rem(30);
+    align-items: flex-start;
+  }
+}
+
+
+// ----- ふわっとした動き ----- //
+/* アニメーション前の初期状態（隠す） */
+.js-fade-in {
+  opacity: 0;
+  transform: translateY(30px); // 少し下からスタートさせる
+  transition:
+    opacity 1s ease,
+    transform 1s ease; // 変化にかかる時間とイージング
+  will-change: opacity, transform; // ブラウザの描画最適化
+}
+
+/* スクロールして画面内に入った時に付与するクラス */
+.js-fade-in.is-in-view {
+  opacity: 1;
+  transform: translateY(0); // 元の位置にふわりと戻る
+}

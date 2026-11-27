@@ -1,0 +1,37 @@
+@use "../foundation/setting" as *;
+
+// *,
+// *::before,
+// *::after {
+//   box-sizing: border-box;
+// }
+
+// コンテンツ幅１２００px
+.l-inner {
+  width: 100%;
+  max-width: $inner;
+  padding-right: $padding-pc;
+  padding-left: $padding-pc;
+  margin-right: auto;
+  margin-left: auto;
+
+  @include mq("md") {
+    padding-inline: rem(10);
+  }
+}
+
+// コンテンツ幅１０００px
+.l-wrapper {
+  width: 100%;
+  max-width: $wrapper;
+  padding-right: $wrapper-padding-pc;
+  padding-left: $wrapper-padding-pc;
+  // margin-right: auto;
+  // margin-left: auto;
+  margin: 0 auto;
+
+  @include mq("md") {
+    padding-inline: rem(20);
+  }
+
+}

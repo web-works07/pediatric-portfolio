@@ -1,0 +1,305 @@
+@use "../../foundation/setting" as *;
+
+// 共通
+.p-medical__attention {
+  font-weight: bold;
+  margin-bottom: rem(3);
+}
+
+// ----- 一般小児科エリア -----　//
+.p-general_pediatrics {
+  background-image: url(../../../images02/blue-back_nami_tiny.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 100%;
+
+  margin: rem(200) 0;
+  padding: rem(260) rem(120);
+
+  @include mq("md") {
+    background-image: url(../../../images02/sp-nami_general.png);
+
+    margin: rem(80) 0;
+    padding: rem(100) rem(10);
+}
+}
+
+// H2はc-medical__headlineへ
+
+.p-symptoms__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: rem(30);
+
+  @include mq("md") {
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(8);
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 15%;
+    border: solid 1px $text-color;
+    border-radius: 50px;
+    padding: 20px;
+    background-color: $back-color;
+
+    @include mq("md") {
+      text-align: left;
+      padding: rem(20) rem(2);
+    }
+
+    // フレックスボックスのレイアウトの中では transform や position を使わなくても余美や配置の調整で動かすことができる
+    // アイコンを少し下にずらしたい場合は transform の代わりに margin-top を使う
+    &::before {
+      content: "";
+      display: block;
+      flex-shrink: 0;
+      width: rem(100);
+      height: rem(60);
+      // margin-top: 1px;
+      margin-right: 15px;
+      background-image: url(../../../images03/thermometer.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: top;
+
+      @include mq("md") {
+        width: rem(60);
+        height: rem(40);
+        margin-right: rem(2);
+
+}
+    }
+
+    &:nth-child(2)::before {
+      background-image: url(../../../images03/nose.png);
+    }
+    &:nth-child(3)::before {
+      background-image: url(../../../images03/cough.png);
+    }
+    &:nth-child(4)::before {
+      background-image: url(../../../images03/ear.png);
+    }
+    &:nth-child(5)::before {
+      background-image: url(../../../images03/stomach.png);
+    }
+    &:nth-child(6)::before {
+      background-image: url(../../../images03/rash.png);
+    }
+    &:nth-child(7)::before {
+      background-image: url(../../../images03/virus.png);
+    }
+    &:nth-child(8)::before {
+      background-image: url(../../../images03/eye.png);
+    }
+    &:nth-child(9)::before {
+      background-image: url(../../../images03/headache.png);
+    }
+  }
+}
+
+// ------予防接種エリア----- //
+.p-vaccination {
+  margin: rem(200) rem(120);
+
+  @include mq("md") {
+    margin: rem(85) rem(10);
+}
+}
+
+.p-table__container {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(25);
+
+  @include mq("md") {
+    flex-direction: column;
+}
+}
+
+// 予防接種一覧表
+.p-vaccine__table {
+  width: 100%;
+  // table-layout: fixed;
+  // border-collapse（ボーダー・コラプス） はテーブルの境界線を重ねるか離すかを指定するプロパティです   separate を指定すると枠線とセルの間に隙間を空ける設定。
+  // 角丸を作る際に border-collapse: collapse だとうまく角が丸くならないことがあるため別々にしている
+  border-collapse: separate;
+  // border-spacing はセルとセルの間の隙間の大きさを指定するプロパティです
+  // 今回は間に隙間を空けずぴたっとくっつけるために 0 に設定している
+  border-spacing: 0;
+
+  border: 2px solid $table-color;
+  border-radius: rem(20);
+  overflow: hidden;
+
+  margin-bottom: rem(10);
+
+  thead {
+    background-color: $pink;
+  }
+
+  th {
+    padding: rem(16) rem(16);
+    text-align: left;
+
+    border-bottom: 1px solid $table-color;
+    border-right: 1px solid $table-color;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  td {
+    padding: rem(16) rem(16);
+    text-align: left;
+
+    border-bottom: 1px solid $table-color;
+    border-right: 1px solid $table-color;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tr:last-child {
+    th,
+    td {
+      border-bottom: none;
+    }
+  }
+}
+
+// 予約接種をご希望の方へ　//
+.p-text-area {
+  flex: 1;
+  width: 40%;
+  border: 1px solid $pink;
+  background-color: $pink;
+  border-radius: rem(20);
+  margin: rem(30);
+  padding: rem(100) rem(40);
+
+  @include mq("md") {
+    width: 100%;
+    margin: 0;
+    padding: rem(30);
+}
+
+  & ul li {
+    margin-bottom: rem(30);
+    list-style: decimal;
+    list-style: circle;
+    letter-spacing: 20%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.p-reserve__title {
+  font-size: rem(28);
+  font-weight: bold;
+  letter-spacing: 20%;
+  margin-bottom: rem(60);
+  text-align: center;
+
+  @include mq("md") {
+    font-size: rem(20);
+    margin-bottom: rem(30);
+}
+}
+
+// ----- 乳幼児健診エリア　----- //
+.p-health_checkup {
+  background-image: url(../../../images02/yellow-nami.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 100%;
+
+  margin: rem(300) 0;
+  padding: rem(260) rem(120);
+
+  @include mq("md") {
+    background-image: url(../../../images02/sp-yl_nami_general.png);
+    margin: rem(85) 0;
+    padding: rem(100) rem(20);
+}
+}
+
+.p-health__container {
+  display: flex;
+  justify-content: space-between;
+
+  @include mq("md") {
+    flex-direction: column;
+    gap: rem(50);
+  }
+}
+
+// 健診内容表
+.p-health__table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  border: 1px solid $light-yellow;
+  border-radius: rem(30);
+  overflow: hidden;
+  text-align: center;
+
+  margin-bottom: rem(10);
+
+  thead {
+    background-color: $blue;
+
+    th {
+      // 左右の中央揃え
+      text-align: center;
+      // 上下の中央揃え
+      vertical-align: middle;
+      padding: rem(20);
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: $white;
+    }
+    tr:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+
+    th,
+    td {
+      // 左右の中央揃え
+      text-align: center;
+      // 上下の中央揃え
+      vertical-align: middle;
+      padding: rem(20);
+    }
+  }
+}
+
+.p-health_checkup__contents {
+  border: 1px solid $text-color;
+  border-radius: rem(30);
+  background-color: $pink;
+  padding: rem(13) rem(100);
+  margin-bottom: rem(15);
+  text-align: center;
+  align-items: center;
+
+  @include mq("md") {
+    padding: rem(20);
+    // text-align: left;
+}
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

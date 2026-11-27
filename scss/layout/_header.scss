@@ -1,0 +1,274 @@
+@use "../foundation/setting" as *;
+
+// --- Header --- //
+.l-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: rem(1200);
+  margin: rem(20) auto rem(80);
+}
+
+// ---pc Logo--- //
+.site-logo {
+  img {
+    width: rem(300);
+    height: auto;
+
+    @include mq("md") {
+      display: none;
+    }
+  }
+}
+
+//--- Navigation (PC) --- //
+.l-header__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(30);
+  align-items: center;
+  font-weight: bold;
+  position: relative;
+
+  // sp //
+  @include mq("md") {
+    display: none;
+    position: fixed;
+    // insetはtop,right,bottom,leftを一括で指定できるプロパティ//
+    inset: 0;
+    // top: 0;
+    // right: 0;
+    width: 100%;
+    height: 100%;
+    padding: rem(200) rem(20) 0;
+    background-image: linear-gradient(-225deg, $white, $blue);
+    opacity: 0.8;
+    z-index: 90;
+
+    // transform: translateX(100%);
+    // opacity: 0;
+    // transition: transform 0.4s ease, opacity 0.4s ease;
+
+    &.is-open {
+      display: block;
+      z-index: 10;
+
+      // transform: translateX(0);
+    }
+  }
+}
+
+// PC nav item
+.l-header__item {
+  position: relative;
+  // display: inline-block;
+
+  @include mq("md") {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+// --- sp nav --- //
+.mobile_link {
+  position: relative;
+  display: inline-block;
+  // padding: rem(8) 0;
+  color: $text-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  @include mq("md") {
+    width: 100%;
+    padding: rem(20) rem(30);
+    border-bottom: rem(2) solid $text-color;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: rem(2);
+    background-color: $blue;
+    transform: scaleX(0);
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    opacity: 0.7;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// Sub List
+.msub_list {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: $white;
+  font-size: rem(12);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease;
+}
+// (Hover)
+.l-header__item:hover .msub_list {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.msub_item {
+  margin-top: rem(8);
+}
+// 隣接兄妹セレクタ 要素A + 要素B 同じ親要素の中にいて、要素Aの直後にきている要素Bだけをターゲットにする
+.msub_item + .msub_item {
+  margin-top: 1rem;
+}
+
+// PC Reservation buttons
+.l-header__sp {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(30);
+
+  @include mq("md") {
+    display: none;
+  }
+}
+
+// SP Header (logo + reservation + hamburger) //
+.l-header__sp-only {
+  display: none;
+
+  @include mq("md") {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-block: rem(10);
+    padding-inline: rem(6);
+    background-color: $white;
+    // text-align: center;
+    z-index: 99999;
+    margin-bottom: rem(50);
+  }
+}
+
+// SP Only logo //
+.site-logo--sp {
+  @include mq("md") {
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: rem(10);
+  }
+}
+
+.l-header__sp-nav {
+  @include mq("md") {
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: rem(10);
+    align-items: center;
+  }
+}
+
+// Hamburger Button //
+.l-header__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: rem(30);
+  height: rem(22);
+  z-index: 100;
+  cursor: pointer;
+
+  @include mq("md") {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 9999;
+  }
+
+  // 3本線の上にmenuの文字
+  .menu {
+    position: absolute;
+    top: rem(-15);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: rem(10);
+    font-weight: bold;
+    color: $text-color;
+    margin: 0;
+    line-height: 1;
+  }
+
+  span {
+    display: block;
+    height: rem(3);
+    background-color: $yellow;
+    border-radius: rem(2);
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+
+    &:nth-child(1) {
+      transform-origin: center center;
+    }
+
+    &:nth-child(3) {
+      transform-origin: center center;
+    }
+  }
+
+  &.is-open {
+    // メニューが開いた時にmenuの文字を消す設定
+    .menu {
+      opacity: 0;
+      transform: opacity 0.3s ease;
+    }
+
+    span {
+      &:nth-child(2) {
+        transform: translateY(rem(9.5)) rotate(45deg);
+      }
+
+      &:nth-child(3) {
+        opacity: 0;
+      }
+
+      &:nth-child(4) {
+        transform: translateY(rem(-9.5)) rotate(-45deg);
+      }
+    }
+  }
+}
+
+.p-sub-mv {
+  @include mq("md") {
+    margin-top: rem(190);
+  }
+}
+
+.p-sub-feature-mv {
+  @include mq("md") {
+    margin-top: rem(220);
+  }
+}
+
+.p-hero-image {
+  @include mq("md") {
+    margin-top: rem(80);
+}
+}

@@ -1,0 +1,301 @@
+@use "../foundation/setting" as *;
+
+// footer　//
+.l-footer__area {
+  background-color: azure;
+  padding-top: rem(80);
+  // ↓↓★スマホ時のはみ出しによる画面崩れを強制的に防ぐ防ぐ↓↓
+  overflow: hidden;
+  position: relative;
+
+  @include mq("md") {
+    padding-top: rem(40);
+    // padding-inline: rem(10);
+  }
+  // ★フッターの中にあるl-innerだけにスマホ用の設定を入れます
+  .l-inner {
+    @include mq("md") {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+// 玉乗りペンギンのイラスト
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: 2%;
+    right: 2%;
+
+    width: rem(150);
+    height: rem(180);
+
+    background: url(../../images/penguin_circus.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+
+    @include mq("md") {
+      bottom: 3%;
+      right: 0;
+
+      width: rem(50);
+    }
+  }
+// 木のイラスト
+  &::after {
+    position: absolute;
+    content: "";
+    bottom: 2%;
+    right: 12%;
+
+    width: rem(460);
+    height: rem(180);
+
+    background: url(../../images/tree_bottom_line.png);
+    background-repeat: repeat-x;
+    background-position: right bottom;
+    background-size: contain;
+
+    @include mq("md") {
+      bottom: 3%;
+      right: 12%;
+
+      width: rem(370);
+      height: rem(90);
+    }
+  }
+}
+
+// 一段目　//
+.l-footer__map {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(68);
+  margin-bottom: rem(40);
+
+  @include mq("md") {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    margin-bottom: rem(60);
+    order: 1;
+  }
+}
+
+// 一段目　左　//
+iframe {
+  width: 60%;
+  @include mq("md") {
+    width: 100%;
+  }  
+}
+
+// 一段目右 //
+.l-footer__access {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content :center;
+  @include mq("md") {
+    width: 100%;
+  }
+}
+
+
+.l-footer__map-despriction {
+  display: flex;
+  // justify-content: center;
+  gap: rem(30);
+  align-items: center;
+  margin-bottom: rem(60);
+
+  @include mq("md") {
+    gap: rem(80);
+    margin-bottom: rem(15);
+    font-size: rem(14);
+  }
+}
+.l-footer__map-despriction:last-child {
+  margin-bottom: 0;
+}
+
+.map-logo {
+  width: rem(80);
+  @include mq("md") {
+    width: rem(50);
+  }  
+}
+
+// 二段目 //
+.l-footer__profile {
+  display: flex;
+  justify-content: space-between;
+  column-gap: rem(30);
+  margin-bottom: rem(40);
+
+  @include mq("md") {
+    flex-direction: column;
+    column-gap: 0;
+    row-gap: rem(30);
+    margin-bottom: rem(60);
+    order: 3;
+  }  
+}
+// 二段目　左　//
+.l-footer__address {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  gap: rem(80);
+
+  @include mq("md") {
+    width: 100%;
+    flex-wrap: nowrap;
+    gap: rem(10);
+  }
+}
+
+.l-footer__profile-contents {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+
+  @include mq("md") {
+    // ★画面幅に合わせて縮むことを許可する↓↓↓
+    flex-shrink: 1;
+    // ★flex子要素の最小幅のバグを防ぐ↓↓↓
+    min-width: 0;
+  }
+}
+
+.penguin-logo {
+  width: rem(200);
+  height: auto;
+  object-fit: contain;
+  @include mq("md") {
+    width: rem(150);
+  }
+}
+
+.clinic-name {
+  font-size: rem(24);
+  letter-spacing: rem(2);
+  font-weight: bold;
+  @include mq("md") {
+    font-size: rem(16);
+  }
+}
+
+.clinic-tel {
+  font-weight: bold;
+  font-size: rem(20);
+  letter-spacing: rem(3);
+  @include mq("md") {
+    font-size: rem(14);
+  }
+}
+
+.clinic-address {
+  letter-spacing: rem(3);
+  line-height: 1.8;
+  @include mq("md") {
+    font-size: rem(13);
+  }
+}
+
+// 二段目　右 //
+.l-footer__cta {
+  width: 40%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  @include mq("md") {
+    width: 100%;
+    text-align: center;
+    justify-content: space-between;
+  }
+}
+
+
+// 三段目 //
+.l-footer__nav-area {
+  display: flex;
+  justify-content: space-between;
+  gap: rem(80);
+  // align-items: center;
+
+  @include mq("md") {
+    flex-direction: column;
+    order: 2;
+  }
+}
+
+// 三段目　左 //
+// ★タイムテーブルを囲む枠（ここにスクロールを設定します）
+.c-timetable__out-frame {
+  width: 60%;
+  // ★ gapによって要素が縮むのを防ぎます↓↓↓
+  flex-shrink: 0;
+
+  @include mq("md") {
+    width: 100%;
+    // overflow-x: auto;                  // 画面からはみ出た分を横スクロール可能にする
+    // -webkit-overflow-scrolling: touch; // スマホでのスクロールを滑らかにする
+    // padding-bottom: rem(10);           // スクロールバーと下の文字が被らないための余白
+  }
+}
+
+
+// 注記テキスト（表の外に出すため、スクロールさせないように個別に調整）
+.c-timetable__note {
+  @include mq("md") {
+    font-size: rem(13);
+    white-space: normal; // テキストはスマホ画面内で自動改行させます
+  }
+}
+
+// <!-- 三段目　右 -->
+// <!-- footer nav -->
+.l-footer__nav {
+  width: 40%;
+  // ★ ナビゲーション側も縮ませたくない場合はここに追加します↓↓↓
+  flex-shrink: 0;
+  // font-weight: bold;
+  padding-top: rem(70);
+
+  @include mq("md") {
+    display: none;
+  }
+}
+.l-footer__nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+.l-footer__medical-subject {
+  display: flex;
+  flex-direction: column;
+  gap: rem(8);
+  padding-top: rem(15);
+  padding-left: rem(20);
+}
+
+.l-footer__cta {
+  @include mq("md") {
+    display: none;
+  }
+}
+
+.l-footer__copy {
+  display: block;
+  background-color: $blue;
+  text-align: center;
+  padding: rem(10);
+  font-size: rem(10);
+  margin-top: rem(40);
+
+  @include mq("md") {
+    font-size: rem(10);
+    margin-top: 0;
+  }
+}

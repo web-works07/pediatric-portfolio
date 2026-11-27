@@ -1,0 +1,130 @@
+@use "../../foundation/setting" as *;
+
+// カルーセル //
+.p-carousel__contents {
+  padding-block: rem(32);
+
+  // 上に食い込ませる設定
+  margin-top: -136px;
+
+  @include mq("md") {
+    padding-block: rem(120) rem(80);
+    margin-top: rem(-180);
+  }
+}
+
+.p-carousel__img {
+  width: rem(450);
+
+  @include mq("md") {
+    width: 100%;
+}
+
+
+}
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {
+  /*横幅94%で左右に余白を持たせて中央寄せ*/
+  width: 94%;
+  margin-inline: auto;
+
+  @include mq("md") {
+    width: 100%;
+  }
+}
+
+.slider img {
+  width: 80vw;
+  height: auto;
+  // max-width: 100%;
+  // height: auto;
+  border-radius: rem(50);
+  margin-inline: auto;
+
+  @include mq("md") {
+    width: 100%;
+    max-width: rem(360);
+    margin-inline: auto;
+
+}
+}
+
+// // リスト要素（li）自体の幅も調整できるようにします
+// .p-carousel__img {
+//   @include mq("md") {
+//     width: 100%;
+//   }
+// }
+
+.slider .slick-slide {
+  transform: scale(0.8); /*左右の画像のサイズを80%に*/
+  transition: all 0.5s; /*拡大や透過のアニメーションを0.5秒で行う*/
+  opacity: 0.5; /*透過50%*/
+
+  // スマートフォン表示のときの設定を追加
+  @include mq("md") {
+    transform: scale(1); /* 縮小を解除して等倍にします */
+    opacity: 1; /* ★透過を解除して、色をはっきり表示させます */
+  }
+}
+
+.slider .slick-slide.slick-center {
+  transform: scale(1); /*中央の画像のサイズだけ等倍に*/
+  opacity: 1; /*透過なし*/
+}
+
+// /*矢印の設定*/
+
+// /*戻る、次へ矢印の位置*/
+// .slick-prev,
+// .slick-next {
+//   position: absolute; /*絶対配置にする*/
+//   top: 42%;
+//   cursor: pointer; /*マウスカーソルを指マークに*/
+//   outline: none; /*クリックをしたら出てくる枠線を消す*/
+//   border-top: 2px solid #666; /*矢印の色*/
+//   border-right: 2px solid #666; /*矢印の色*/
+//   height: 15px;
+//   width: 15px;
+// }
+
+// .slick-prev {
+//   /*戻る矢印の位置と形状*/
+//   left: -1.5%;
+//   transform: rotate(-135deg);
+// }
+
+// .slick-next {
+//   /*次へ矢印の位置と形状*/
+//   right: -1.5%;
+//   transform: rotate(45deg);
+// }
+
+
+/*ドットナビゲーションの設定*/
+.slick-dots {
+  text-align: center;
+  margin: 20px 0 0 0;
+}
+
+.slick-dots li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  color: transparent;
+  outline: none;
+  width: 8px; /*ドットボタンのサイズ*/
+  height: 8px; /*ドットボタンのサイズ*/
+  display: block;
+  border-radius: 50%;
+  background: #ccc; /*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button {
+  background: #333; /*ドットボタンの現在地表示の色*/
+}

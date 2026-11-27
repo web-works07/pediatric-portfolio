@@ -1,0 +1,126 @@
+@use "../../foundation/setting" as *;
+
+// ----- 下層　お知らせエリア ----- //
+.p-sub-news {
+  background-image: url(../../../images02/sub-news-pinknami.png);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 100%;
+
+  margin: rem(100) 0 rem(300);
+  padding: rem(280) rem(270);
+
+  @include mq("md") {
+    background-image: url(../../../images02/sp-pink_sub-news.png);
+
+    margin: rem(30) 0 rem(160);
+    padding: rem(80) rem(30);
+  }
+
+  &__item {
+    border-bottom: rem(6) solid $back-color;
+
+    @include mq("md") {
+      border-bottom: rem(3) solid $back-color;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: rem(80);
+
+    padding-block: rem(40);
+
+    @include mq("md") {
+      gap: rem(60);
+      padding-block: rem(10);
+    }
+
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+      // transform: translateX(3px);
+    }
+  }
+
+  &__date {
+    flex-shrink: 0;
+    font-size: rem(18);
+    font-weight: 700;
+    letter-spacing: rem(2);
+
+    @include mq("md") {
+      font-size: rem(16);
+    }
+  }
+
+  &__title {
+    font-size: rem(20);
+    line-height: 1.7;
+    letter-spacing: rem(2);
+
+    @include mq("md") {
+      font-size: rem(16);
+    }
+  }
+}
+
+.p-sub-news__link {
+  position: relative;
+}
+
+// 矢印　→
+.p-sub-news__link::after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: rem(50);
+  right: rem(20);
+  transform: translateX(-50%);
+  background: url(../../../images05/news-arrow.svg) no-repeat center center;
+  width: rem(50);
+  height: rem(10);
+
+  /* ▼ ここが一番重要！「どのプロパティを、何秒かけて変化させるか」を指定する */
+  transition: transform 0.6s ease;
+
+  @include mq("md") {
+    display: none;
+  }
+}
+
+.p-sub-news__link:hover:after {
+  // right: rem(10);
+  transform: translateX(rem(10));
+
+  /* ▼ マウスを乗せたときは、0.2秒でシュッと素早く動く */
+  transition: transform 0.2s ease-out;
+}
+
+// // // ページネーション　//
+.p-sub-news__pagination {
+  display: flex;
+  justify-content: center;
+  gap: rem(20);
+  margin-top: rem(130);
+
+  @include mq("md") {
+    margin-top: rem(60);
+  }
+}
+
+.p-sub-news__pagination a {
+  display: inline-block;
+  padding: rem(6) rem(12);
+  border: rem(1) solid $text-color;
+  border-radius: rem(4);
+
+  &:hover {
+    background-color: $text-color;
+    color: #fff;
+  }
+}

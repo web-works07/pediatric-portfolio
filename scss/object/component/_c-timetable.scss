@@ -1,0 +1,113 @@
+@use "../../foundation/setting" as *;
+
+//------- 診療時間表 ----- //
+
+.c-timetable__out-frame {
+  width: rem(630);
+  max-width: 100%;
+  // overflow: auto;
+  // // ↑スマホで横スクロールできるようになる
+  // border: 1px solid $blue;
+  background-color: $white;
+  border-radius: rem(10);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  padding: rem(20);
+
+  // -- sp -- //
+  @include mq("md") {
+    max-width: 100%;
+    margin-bottom: rem(20);
+    padding: rem(10);
+  }
+}
+
+.c-timetable {
+  flex: 1;
+  width: 100%;
+  border-collapse: collapse;
+  // ↑　表の線が二重にならず、1本の線にまとまる
+
+  // ↓↓列幅が均等に固定されます
+  // table-layout: fixed;
+
+  border-radius: rem(9);
+  overflow: hidden;
+  // ↑overflow: hidden; がないと、セルの四角い角が table の丸い角からはみ出してしまう。だから、丸い角の表を作るときはborder-radius + overflow: hidden のセットが基本.
+
+  align-items: center;
+  margin-bottom: rem(12);
+
+    // @include mq("md") {
+  //   width: rem(650); // ★スマホ画面でも潰れないように、表自体の最小横幅を固定します
+  // }
+
+
+  
+  & th ,td {
+    border: rem(5) solid $back-color;
+    padding: rem(10);
+    text-align: center;
+
+    @include mq("md") {
+      padding: rem(3);
+      align-content: center;
+      font-size: rem(12);
+    }
+  }
+
+  &__note {
+    margin-top: rem(8);
+    margin-left: rem(8);
+    // （spanタグと文字が並んでいる状態）で、CSSの align-items: center; が効いていないことが原因です。align-items は、その要素自体が フレックスボックス（display: flex; または display: inline-flex;） になっていないと機能しません。
+    // 今のCSSに display: flex; を追加することで、ドットと文字が綺麗に縦中央で揃うようになります。
+    display: flex;
+    align-items: center;
+    font-size: rem(14);
+    line-height: 1.7;
+  }
+}
+
+
+.dot {
+  display: inline-block;
+  width: rem(20);
+  height: rem(20);
+  background-color: #83b1c9;
+  border-radius: 50%;
+}
+
+.dash {
+  display: inline-block;
+  width: rem(20);
+  height: 3px;
+  background: #83b1c9;
+  vertical-align: middle;
+
+  @include mq("md") {
+    width: rem(10);
+  }
+}
+
+.badge-vaccine {
+  display: inline-block;
+  width: 100%;
+  background: $yellow;
+  color: #83b1c9;
+  font-size: rem(14);
+  text-align: center;
+  padding: 0 rem(60);
+  border-radius: 50px;
+
+  @include mq("md") {
+    font-size: rem(12);
+    padding: 0;
+  }
+}
+
+.baby-dot {
+  display: inline-block;
+  width: rem(20);
+  height: rem(20);
+  background: $yellow;
+  border-radius: 50%;
+}

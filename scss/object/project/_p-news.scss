@@ -1,0 +1,121 @@
+@use "../../foundation/setting" as *;
+
+// ----- TP お知らせエリア　----- //
+.p-news {
+  background-color: $pink;
+  margin-top: rem(16);
+  margin-bottom: rem(160);
+  padding-block: rem(32);
+
+  @include mq("md") {
+    width: 100%;
+    height: auto;
+    align-content: center;
+    margin-block: 0 rem(80);
+    padding-block: rem(20);
+  }
+}
+
+.p-news__contents {
+  display: flex;
+  justify-content: space-evenly;
+  gap: rem(30);
+  padding-inline: rem(120);
+
+  @include mq("md") {
+    flex-direction: column;
+    // gap: rem(32);
+  }
+}
+
+.p-news__title {
+  display: inline-block;
+  letter-spacing: rem(3);
+  font-size: rem(20);
+  font-weight: bold;
+  margin-right: rem(60);
+
+  @include mq("md") {
+    font-size: rem(14);
+    margin-right: 0;
+    text-align: center;
+    margin-bottom: rem(10);
+  }
+}
+
+.p-news__item {
+  border-bottom: rem(6) solid $back-color;
+  padding-bottom: rem(16);
+
+  // 2段目以降だけ
+  &:not(:first-of-type) {
+    padding-top: rem(16);
+
+    @include mq("md") {
+      padding-top: rem(16);
+    }
+  }
+
+  @include mq("md") {
+    border-bottom: rem(3) solid $back-color;
+  }
+}
+
+.p-news__link a {
+  display: flex;
+  align-items: center;
+  gap: rem(60);
+
+  // padding-bottom: rem(40);
+  // margin-left: rem(20);
+
+  transform: opacity 0.3s ease;
+  transform: 0.3s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @include mq("md") {
+    column-gap: rem(60);
+  }
+}
+
+.p-news__date {
+  flex-shrink: 0;
+  font-size: rem(18);
+  font-weight: bold;
+  letter-spacing: rem(2);
+
+  @include mq("md") {
+    font-size: rem(14);
+  }
+}
+
+.p-news__text {
+  flex-shrink: 0;
+  font-size: rem(18);
+  font-weight: bold;
+  letter-spacing: rem(2);
+  padding-right: rem(100);
+
+  @include mq("md") {
+    font-size: rem(14);
+    padding-right: 0;
+  }
+}
+
+// --- もっと見るbtn ---- //
+.c-btn__more {
+  // 縦に伸びるのを防ぎ、かつ中央にします↓//
+  align-self: center;
+  // 横に広がるのを防ぎ、文字幅に合わせます。↓//
+  width: fit-content;
+  margin-left: auto;
+
+  @include mq("md") {
+    font-size: rem(10);
+    margin-inline: auto;
+    margin-top: rem(16);
+  }
+}
